@@ -1,0 +1,308 @@
+<div>
+	<div class="sign-in-popup">
+		<button class="close-popup">&times</button>
+
+		<form action="/sign-in" class="sign-in-form show" method="post">
+			<h1>Sign in</h1>
+			<div class="inputfield">
+				<label for="username">Username</label>
+				<input type="text" name="username" id="username">
+			</div>
+			<div class="inputfield">
+				<label for="password">Password</label>
+				<div class="password-input">
+					<input type="password" name="password" id="password" class="password">
+					<button type="button" class="reveal-sign-in reveal" title="Show Password"></button>
+				</div>
+			</div>
+			<button type="submit" id="sign-in">Sign in</button>
+			<button type="button" id="register-button">Register</button>
+		</form>
+		
+	
+
+		<form action="/register" class="register-form">
+			<h1>Register</h1>
+			<div class="inputfield">
+				<label for="first-name">First Name</label>
+				<input type="text" name="first-name" id="first-name">
+			</div>
+			<div class="inputfield">
+				<label for="last-name">Last Name</label>
+				<input type="text" name="last-name" id="last-name">
+			</div>
+			<div class="inputfield">
+				<label for="reg-username">Username</label>
+				<input type="text" name="reg-username" id="reg-username">
+			</div>
+			<div class="inputfield">
+				<label for="email">Email</label>
+				<input type="email" name="email" id="email">
+			</div>
+			<div class="inputfield">
+				<label for="reg-password">Password</label>
+				<div class="password-input">
+					<input type="password" name="reg-password" id="reg-password" class="reg-password">
+					<button type="button" class="reveal reveal-register" title="Show Password"></button>
+				</div>
+			</div>
+			<div class="inputfield">
+				<label for="confirm-password">Confirm Password</label>
+				<div class="password-input">
+					<input type="password" name="confirm-password" id="confirm-password" class="confirm-password">
+					<button type="button" class="reveal reveal-confirm-register" title="Show Password"></button>
+				</div>
+			</div>
+			<div class="inputfield">
+				<label for="job-title">Job Title</label>
+				<input type="text" name="job-title" id="job-title">
+			</div>
+			<div class="inputfield">
+				<label for="phone-number">Phone Number</label>
+				<input type="tel" name="phone-number" id="phone-number">
+			</div>
+			<button type="submit" class="register">Register</button>
+			
+			<button type="button" class="back-to-sign-in">Back to Sign in</button>
+		</form>
+	</div>
+
+
+</div>
+
+
+
+
+<style>
+	:root {
+		--text: #434343;
+		--background: #fdf5f1;
+		--primary: #e25f20;
+		--secondary: #63d2ef;
+		--accent: #6c4fe8;
+	}
+
+	.sign-in-popup {
+		contain: Paint;
+		position: fixed;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		width: 40%;
+		min-height: 200svh;
+		display: flex;
+		overflow: hidden;
+		align-items: center;
+		flex-direction: column;
+		background-color: #fdf5f103;
+		z-index: 100;
+		backdrop-filter: blur(5px);
+		visibility: hidden;
+		opacity: 0;
+		pointer-events: none;
+		transition: all 400ms ease-in-out;
+		box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+		transform: translateX(100%);
+	}
+	
+	.sign-in-popup.active {
+		transform: translateX(0);
+		visibility: visible;
+		opacity: 1;
+		pointer-events: auto;
+	}
+
+	.sign-in-form {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		background-color: #fdf5f103;
+		height: 0;
+		overflow: hidden;
+		transition: height 400ms ease-in-out;
+		white-space: nowrap;
+	}
+	.sign-in-form.show {
+		height: 100svh;
+	}
+
+	.inputfield {
+		display: flex;
+		flex-direction: column;
+		margin-bottom: .3rem;
+	}
+
+	.inputfield input {
+		width: 100%;
+		padding: .1rem .3rem;
+		border: 1px solid var(--text);
+		border-radius: 5px;
+		outline: none;
+		font-size: 1rem;
+		color: var(--text);
+	}
+
+	.password-input {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		position: relative;
+	}
+
+	.reveal {
+		position: absolute;
+		right: 5%;
+		top: 0;
+		bottom: 0;
+		margin: auto;
+		width: 1rem;
+		height: 1rem;
+		border: .5px solid black;
+		background-color: white;
+		color: var(--text);
+		cursor: pointer;
+		transition: background-color 200ms ease-in-out; 
+	}
+
+	.reveal.hide {
+		background-color: var(--primary);
+	}
+	.close-popup {
+		position: fixed;
+		right: 5%;
+		top: 2%;
+		width: 2rem;
+		height: 2rem;
+		border: none;
+		background-color: transparent;
+		font-size: 2rem;
+		cursor: pointer;
+	}
+
+	#sign-in {
+		padding: .5rem;
+		border: none;
+		border-radius: 5px;
+		background-color: var(--primary);
+		color: var(--background);
+		font-size: 1rem;
+		cursor: pointer;
+		transition: background-color 200ms ease-in-out;
+	}
+	#sign-in:hover {
+		background-color: var(--secondary);	
+	}
+	#register-button {
+		margin-block: 2rem;
+		padding: .5rem;
+		border: none;
+		color: var(--text);
+		font-size: 1rem;
+		cursor: pointer;
+		background-color: transparent;
+	}
+	#register-button:hover {
+		color: var(--secondary);
+	}
+
+	
+	.register-form {
+		height: 100svh;
+		padding: 1rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		background-color: #fdf5f103;
+	}
+	.register {
+		padding: .5rem;
+		border: none;
+		border-radius: 5px;
+		background-color: var(--primary);
+		color: var(--background);
+		font-size: 1rem;
+		cursor: pointer;
+		transition: background-color 200ms ease-in-out;
+	}
+	.register:hover {
+		background-color: var(--secondary);	
+	}
+	.back-to-sign-in {
+		margin-block: 2rem;
+		padding: .5rem;
+		border: none;
+		color: var(--text);
+		font-size: 1rem;
+		cursor: pointer;
+		background-color: transparent;
+	}
+	@media screen and (max-width: 768px) {
+		.sign-in-popup {
+			width: 100%;
+		}
+		.inputfield input {
+			padding: .3rem .5rem;
+		}
+	}
+</style>
+
+<script>
+	const signInButton = document.getElementById('sign-in-button');
+	const signInPopup = document.querySelector('.sign-in-popup');
+	const closeButton = document.querySelector('.close-popup');
+	const revealSignIn = document.querySelector('.reveal-sign-in');
+	const revealRegister = document.querySelector('.reveal-register');
+	const revealConfirmRegister = document.querySelector('.reveal-confirm-register');
+	const passwordSignIn = document.querySelector('#password'); // corrected here
+	const passwordRegister = document.querySelector('#reg-password'); // corrected here
+	const confirmPassword = document.querySelector('#confirm-password'); // corrected here
+	const signInForm = document.querySelector('.sign-in-form');
+	const registerButton = document.getElementById('register-button');
+	const backToSignIn = document.querySelector('.back-to-sign-in');
+	
+	registerButton.addEventListener('click', () => {
+		signInForm.classList.remove('show')
+	});
+	backToSignIn.addEventListener('click', () => {
+		signInForm.classList.add('show')
+	});
+
+	signInButton.addEventListener('click', () => {
+		signInPopup.classList.add('active');
+	});
+
+	closeButton.addEventListener('click', () => {
+		signInPopup.classList.remove('active');
+	});
+
+	revealSignIn.addEventListener('click', () => {
+		if (passwordSignIn.type === 'password') {
+			passwordSignIn.type = 'text';
+			revealSignIn.classList.add('hide');
+		} else {
+			passwordSignIn.type = 'password';
+			revealSignIn.classList.remove('hide');
+		}
+	});
+
+	revealRegister.addEventListener('click', () => {
+		if (passwordRegister.type === 'password') {
+			passwordRegister.type = 'text';
+			revealRegister.classList.add('hide');
+		} else {
+			passwordRegister.type = 'password';
+			revealRegister.classList.remove('hide');
+		}
+	});
+
+	revealConfirmRegister.addEventListener('click', () => {
+		if (confirmPassword.type === 'password') {
+			confirmPassword.type = 'text';
+			revealConfirmRegister.classList.add('hide');
+		} else {
+			confirmPassword.type = 'password';
+			revealConfirmRegister.classList.remove('hide');
+		}
+	});
+</script>

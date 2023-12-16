@@ -1,0 +1,70 @@
+<header>
+    <div class="brand">
+      <div class="logo">Logo</div>
+    </div>
+    <nav class="nav">
+      <a href="#home">Home</a>
+      <a href="/products">Products</a>
+      <a href="#about">About</a>
+    </nav>
+    <!-- check if the user is logged in, if yes display the profile button in ejs-->
+    <% if (locals.user) { %>
+      <button class="profile-button">Profile</a>
+    <% } else { %>
+      <button id="sign-in-button" class="sign-in-button">Sign in</button>
+    <% } %>
+    
+</header>
+
+
+<style>
+:root{
+--text: #434343;
+--background: #fdf5f1;
+--primary: #e25f20;
+--secondary: #63d2ef;
+--accent: #6c4fe8;
+}
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: .3rem 3rem;
+  background-color: var(--background);
+}
+.nav a {
+  text-decoration: none;
+  color: var(--text);
+  margin-inline: 1rem;
+  position: relative;
+  padding-block: .5rem;
+}
+.nav a:hover {
+  color: var(--primary);
+  transition: all 400ms ease-in-out;
+}
+.nav a::before{
+  content: '';
+  position: absolute;
+  height: 2px;
+  left: 100%;
+  opacity: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: var(--accent);
+  transition: all 400ms ease-in-out;
+  color: var(--primary);
+}
+.nav a:hover::before{
+  opacity: 1;
+  left: 0;
+}
+#sign-in-button {
+  border: none;
+  background-color: transparent;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+</style
