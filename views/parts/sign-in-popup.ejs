@@ -54,10 +54,6 @@
 				</div>
 			</div>
 			<div class="inputfield">
-				<label for="job-title">Job Title</label>
-				<input type="text" name="job-title" id="job-title">
-			</div>
-			<div class="inputfield">
 				<label for="phone-number">Phone Number</label>
 				<input type="tel" name="phone-number" id="phone-number">
 			</div>
@@ -129,7 +125,6 @@
 	.inputfield {
 		display: flex;
 		flex-direction: column;
-		margin-bottom: .3rem;
 	}
 
 	.inputfield input {
@@ -248,61 +243,43 @@
 </style>
 
 <script>
-	const signInButton = document.getElementById('sign-in-button');
-	const signInPopup = document.querySelector('.sign-in-popup');
-	const closeButton = document.querySelector('.close-popup');
-	const revealSignIn = document.querySelector('.reveal-sign-in');
-	const revealRegister = document.querySelector('.reveal-register');
-	const revealConfirmRegister = document.querySelector('.reveal-confirm-register');
-	const passwordSignIn = document.querySelector('#password'); // corrected here
-	const passwordRegister = document.querySelector('#reg-password'); // corrected here
-	const confirmPassword = document.querySelector('#confirm-password'); // corrected here
-	const signInForm = document.querySelector('.sign-in-form');
-	const registerButton = document.getElementById('register-button');
-	const backToSignIn = document.querySelector('.back-to-sign-in');
-	
-	registerButton.addEventListener('click', () => {
-		signInForm.classList.remove('show')
-	});
-	backToSignIn.addEventListener('click', () => {
-		signInForm.classList.add('show')
-	});
+	function $(selector) {
+		return document.querySelector(selector);
+	}
 
-	signInButton.addEventListener('click', () => {
-		signInPopup.classList.add('active');
-	});
+	function $id(id) {
+		return document.getElementById(id);
+	}
 
-	closeButton.addEventListener('click', () => {
-		signInPopup.classList.remove('active');
-	});
+	const signInButton = $id('sign-in-button');
+	const signInPopup = $('.sign-in-popup');
+	const closeButton = $('.close-popup');
+	const revealSignIn = $('.reveal-sign-in');
+	const revealRegister = $('.reveal-register');
+	const revealConfirmRegister = $('.reveal-confirm-register');
+	const passwordSignIn = $('#password');
+	const passwordRegister = $('#reg-password');
+	const confirmPassword = $('#confirm-password');
+	const signInForm = $('.sign-in-form');
+	const registerButton = $id('register-button');
+	const backToSignIn = $('.back-to-sign-in');
 
-	revealSignIn.addEventListener('click', () => {
-		if (passwordSignIn.type === 'password') {
-			passwordSignIn.type = 'text';
-			revealSignIn.classList.add('hide');
+	registerButton.addEventListener('click', () => signInForm.classList.remove('show'));
+	backToSignIn.addEventListener('click', () => signInForm.classList.add('show'));
+	signInButton.addEventListener('click', () => signInPopup.classList.add('active'));
+	closeButton.addEventListener('click', () => signInPopup.classList.remove('active'));
+
+	revealSignIn.addEventListener('click', () => togglePasswordVisibility(passwordSignIn, revealSignIn));
+	revealRegister.addEventListener('click', () => togglePasswordVisibility(passwordRegister, revealRegister));
+	revealConfirmRegister.addEventListener('click', () => togglePasswordVisibility(confirmPassword, revealConfirmRegister));
+
+	function togglePasswordVisibility(passwordField, revealButton) {
+		if (passwordField.type === 'password') {
+			passwordField.type = 'text';
+			revealButton.classList.add('hide');
 		} else {
-			passwordSignIn.type = 'password';
-			revealSignIn.classList.remove('hide');
+			passwordField.type = 'password';
+			revealButton.classList.remove('hide');
 		}
-	});
-
-	revealRegister.addEventListener('click', () => {
-		if (passwordRegister.type === 'password') {
-			passwordRegister.type = 'text';
-			revealRegister.classList.add('hide');
-		} else {
-			passwordRegister.type = 'password';
-			revealRegister.classList.remove('hide');
-		}
-	});
-
-	revealConfirmRegister.addEventListener('click', () => {
-		if (confirmPassword.type === 'password') {
-			confirmPassword.type = 'text';
-			revealConfirmRegister.classList.add('hide');
-		} else {
-			confirmPassword.type = 'password';
-			revealConfirmRegister.classList.remove('hide');
-		}
-	});
+	}
 </script>
