@@ -1,7 +1,6 @@
 {
   "name": "typescript",
   "module": "index.js",
-  "type": "module",
   "devDependencies": {
     "bun-types": "latest"
   },
@@ -9,6 +8,7 @@
     "typescript": "^5.0.0"
   },
   "scripts": {
+    "dev2": "concurrently \"nodemon index.js\" \"browser-sync start --proxy 'localhost:8080' --serveStatic 'public' --files 'public,views'\"",
     "dev": "concurrently \"bun --watch index.js\" \"browser-sync start --proxy 'localhost:8080' --serveStatic 'public' --files 'public,views'\""
   },
   "dependencies": {
