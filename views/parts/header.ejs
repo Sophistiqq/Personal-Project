@@ -1,8 +1,10 @@
 <header>
+    <button type="button" class="menu"><i class="fa-solid fa-bars"></i></button>
     <div class="brand">
       <div class="logo">Logo</div>
     </div>
     <nav class="nav">
+      <button type="button" class="close-menu">&times</button>
       <a href="/">Home</a>
       <a href="/products">Products</a>
       <a href="#about">About</a>
@@ -60,11 +62,79 @@ header {
   opacity: 1;
   left: 0;
 }
+.nav .close-menu {
+  display: none;
+  border: none;
+  background-color: transparent;
+  font-size: 2rem;
+  cursor: pointer;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
 #sign-in-button {
   border: none;
   background-color: transparent;
   padding: 1rem;
   cursor: pointer;
 }
+.menu {
+  border: none;
+  background-color: transparent;
+  font-size: 2rem;
+  cursor: pointer;
+  display: none;
+}
 
-</style
+@media screen and (max-width: 780px) {
+  header {
+    padding-block: 1.5rem;
+    padding-inline: 1rem;
+    justify-content: space-between;
+  }
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 50vw;
+    height: 100vh;
+    padding-top: 5rem;
+    padding-left: 1rem;
+    margin-block: 1rem;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background);
+    backdrop-filter: blur(5px);
+    margin: 0;
+    box-shadow: 0 0 10px rgba(0,0,0,.2);
+    transform: translateX(-100%);
+    transition: transform 400ms ease-in-out;
+  }
+  .nav.show {
+    transform: translateX(0);
+  }
+  .nav .close-menu {
+    display: block;
+  }
+  .menu {
+    display: block;
+  }
+}
+
+</style>
+
+
+<script>
+const nav = document.querySelector('.nav');
+const menuButton = document.querySelector('.menu');
+const close_menu = document.querySelector('.close-menu');
+
+menuButton.addEventListener('click', () => {
+  nav.classList.add('show');
+});
+
+close_menu.addEventListener('click',()=>{
+  nav.classList.remove('show');
+})
+
+</script>
