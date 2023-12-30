@@ -1,0 +1,173 @@
+:root {
+  --text: #434343;
+  --background: #fdf5f1;
+  --primary: #e25f20;
+  --secondary: #63d2ef;
+  --accent: #6c4fe8;
+}
+
+.sign-in-popup {
+  contain: Paint;
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 40%;
+  min-height: 200svh;
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  flex-direction: column;
+  background-color: #fdf5f103;
+  z-index: 100;
+  backdrop-filter: blur(5px);
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 400ms ease-in-out;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+  transform: translateX(100%);
+}
+
+.sign-in-popup.active {
+  transform: translateX(0);
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.sign-in-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #fdf5f103;
+  height: 0;
+  overflow: hidden;
+  transition: height 400ms ease-in-out;
+  white-space: nowrap;
+}
+.sign-in-form.show {
+  height: 100svh;
+}
+
+.inputfield {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputfield input {
+  width: 100%;
+  padding: 0.1rem 0.3rem;
+  border: 1px solid var(--text);
+  border-radius: 5px;
+  outline: none;
+  font-size: 1rem;
+  color: var(--text);
+}
+
+.password-input {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.reveal {
+  position: absolute;
+  right: 5%;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: 1rem;
+  height: 1rem;
+  border: 0.5px solid black;
+  background-color: white;
+  color: var(--text);
+  cursor: pointer;
+  transition: background-color 200ms ease-in-out;
+}
+
+.reveal.hide {
+  background-color: var(--primary);
+}
+.close-popup {
+  position: fixed;
+  right: 5%;
+  top: 2%;
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  background-color: transparent;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+#sign-in {
+  padding: 0.5rem;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--primary);
+  color: var(--background);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 200ms ease-in-out;
+}
+#sign-in:hover {
+  background-color: var(--secondary);
+}
+#register-button {
+  margin-block: 2rem;
+  padding: 0.5rem;
+  border: none;
+  color: var(--text);
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: transparent;
+}
+#register-button:hover {
+  color: var(--secondary);
+}
+
+.register-form {
+  height: 100svh;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #fdf5f103;
+}
+.register {
+  padding: 0.5rem;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--primary);
+  color: var(--background);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 200ms ease-in-out;
+}
+.register:hover {
+  background-color: var(--secondary);
+}
+.back-to-sign-in {
+  margin-block: 2rem;
+  padding: 0.5rem;
+  border: none;
+  color: var(--text);
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: transparent;
+}
+@media screen and (max-width: 768px) {
+  .sign-in-popup {
+    width: 100%;
+  }
+  .inputfield input {
+    padding: 0.3rem 0.5rem;
+  }
+}
+
+#sign-in, .register {
+  margin-block: 1rem;
+}
