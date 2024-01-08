@@ -49,6 +49,24 @@ function togglePasswordVisibility(passwordField, revealButton) {
     revealButton.classList.remove("hide");
   }
 }
+// popup animation  then remove atfter 4s
+function animatePopup($message) {
+  popupMessage.textContent = $message;
+  popup.style.animation =
+    "slide-down 4s cubic-bezier(0.645, 0.045, 0.355, 1) both";
+  setTimeout(() => {
+    popup.style.animation = "";
+  }, 4000);
+}
+// animation: slide-down 4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+
+// @keyframes slide-down {
+//
+//
+const inputs = document.querySelectorAll("input");
+
+const popup = document.querySelector(".popup");
+const popupMessage = document.querySelector(".popup-message");
 
 signInForm.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -66,9 +84,9 @@ signInForm.addEventListener("submit", (event) => {
     .then((response) => response.json())
     .then((data) => {
       if (data.success) {
-        window.location.href = '/products';
+        window.location.href = "/products";
       } else {
-        alert(data.message);
+        animatePopup(data.message);
       }
     })
     .catch((error) => {
@@ -76,59 +94,10 @@ signInForm.addEventListener("submit", (event) => {
     });
 });
 
-// 	<form class="register-form">
-// 			<h1>Register</h1>
-// 			<div class="inputfield">
-// 				<label for="first-name">First Name</label>
-// 				<input type="text" name="first-name" id="first-name">
-// 			</div>
-// 			<div class="inputfield">
-// 				<label for="last-name">Last Name</label>
-// 				<input type="text" name="last-name" id="last-name">
-// 			</div>
-// 			<div class="inputfield">
-// 				<label for="reg-username">Username</label>
-// 				<input type="text" name="reg-username" id="reg-username">
-// 			</div>
-// 			<div class="inputfield">
-// 				<label for="email">Email</label>
-// 				<input type="email" name="email" id="email">
-// 			</div>
-// 			<div class="inputfield">
-// 				<label for="reg-password">Password</label>
-// 				<div class="password-input">
-// 					<input type="password" name="reg-password" id="reg-password" class="reg-password">
-// 					<button type="button" class="reveal reveal-register" title="Show Password"></button>
-// 				</div>
-// 			</div>
-// 			<div class="inputfield">
-// 				<label for="confirm-password">Confirm Password</label>
-// 				<div class="password-input">
-// 					<input type="password" name="confirm-password" id="confirm-password" class="confirm-password">
-// 					<button type="button" class="reveal reveal-confirm-register" title="Show Password"></button>
-// 				</div>
-// 			</div>
-// 			<div class="inputfield">
-// 				<label for="phone-number">Phone Number</label>
-// 				<input type="tel" name="phone-number" id="phone-number">
-// 			</div>
-// 			<button type="submit" class="register">Register</button>
-//
-// 			<button type="button" class="back-to-sign-in">Back to Sign in</button>
-// 		</form>
-// 	</div>
-// </div>
-//
-//
-//
-//
-// Create a script for this to handle the form above
-
 const register_form = document.querySelector(".register-form");
 
 register_form.addEventListener("submit", (event) => {
   event.preventDefault();
-
   const firstName = document.getElementById("first-name").value;
   const lastName = document.getElementById("last-name").value;
   const username = document.getElementById("reg-username").value;
@@ -137,6 +106,11 @@ register_form.addEventListener("submit", (event) => {
   const confirmPassword = document.getElementById("confirm-password").value;
   const phoneNumber = document.getElementById("phone-number").value;
 
+  // check if passwords match
+  if (password !== confirmPassword) {
+    animatePopup("Passwords do not match");
+    return;
+  }
   fetch("/register", {
     method: "POST",
     headers: {
@@ -155,9 +129,13 @@ register_form.addEventListener("submit", (event) => {
     .then((response) => response.json())
     .then((data) => {
       if (data.success) {
-        window.location.href = "/products";
+        inputs.forEach((input) => {
+          input.value = "";
+        });
+        animatePopup(data.message);
+        signInForm.classList.add("show");
       } else {
-        alert(data.message);
+        animatePopup(data.message);
       }
     })
     .catch((error) => {

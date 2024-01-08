@@ -24,7 +24,7 @@
   visibility: hidden;
   opacity: 0;
   pointer-events: none;
-  transition: all 400ms ease-in-out;
+  transition: all 600ms cubic-bezier(1, 0.01, 0.5, 0.97);
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
   transform: translateX(100%);
 }
@@ -43,7 +43,7 @@
   background-color: #fdf5f103;
   height: 0;
   overflow: hidden;
-  transition: height 400ms ease-in-out;
+  transition: height 600ms cubic-bezier(1, 0.01, 0.5, 0.97);
   white-space: nowrap;
 }
 .sign-in-form.show {
@@ -85,7 +85,7 @@
   background-color: white;
   color: var(--text);
   cursor: pointer;
-  transition: background-color 200ms ease-in-out;
+  transition: background-color 600ms cubic-bezier(1, 0.01, 0.5, 0.97);
 }
 
 .reveal.hide {
@@ -111,7 +111,7 @@
   color: var(--background);
   font-size: 1rem;
   cursor: pointer;
-  transition: background-color 200ms ease-in-out;
+  transition: background-color 600ms cubic-bezier(1, 0.01, 0.5, 0.97);
 }
 #sign-in:hover {
   background-color: var(--secondary);
@@ -145,7 +145,7 @@
   color: var(--background);
   font-size: 1rem;
   cursor: pointer;
-  transition: background-color 200ms ease-in-out;
+  transition: background-color 600ms cubic-bezier(1, 0.01, 0.5, 0.97);
 }
 .register:hover {
   background-color: var(--secondary);
@@ -171,3 +171,34 @@
 #sign-in, .register {
   margin-block: 1rem;
 }
+
+/* <div class="popup"> */
+/*   <div class="popup-content"> */
+/*     <button class="close-popup">&times</button> */
+/*     <div class="popup-message"> */
+/*       <h1>Success!</h1> */
+/*     </div> */
+/*   </div> */
+/* </div> */
+
+
+/* sty;e the popup. it will appear from top  it should be like a small notification*/
+
+.popup {
+  position: fixed;
+  top: 3rem;
+  right: 3rem;
+  transform: translateY(-300%);
+  z-index: 100;
+}
+.popup-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background-color: var(--background);
+  border-radius: .5rem;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+}
+
